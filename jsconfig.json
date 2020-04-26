@@ -1,0 +1,11 @@
+{
+  "include": ["packages/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "target": "es2020",
+    "checkJs": false,
+    "baseUrl": ".",
+    "paths": {}
+  }
+}
