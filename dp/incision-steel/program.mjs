@@ -6,27 +6,34 @@
  */
 export default function incisionSteel(n) {
   const prices = [0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30];
-  const dp = [{price: 0, current: 0, next: 0}];
+  const dp = [{revenue: 0, len: 0, next: null}];
 
   for (let i = 1; i <= n; i++) {
 
-    const collect = [];
+    // 计算所有长度的收益
+    const revenues = [0];
     for (let j = 1, len = prices.length; j < len; j++) {
       if (i - j >= 0)
-        collect.push(
-          {
-            price: prices[j] + prices[i-j],
-            current: j,
-            next: i-j
-          }
-        );
+        revenues.push(prices[j] + dp[i-j].revenue);
     }
 
-    dp[i] = collect.reduce(
-      (r, v) => r.price > v.price ? r : v,
-      {price: 0}
-    );
+    // 存储最大收益
+    let max = dp[0];
+    for (let j = 1, len = revenues.length; j < len; j++) {
+      if (revenues[j] > max.revenue)
+        max = { revenue: revenues[j], len: j, next: dp[i-j] };
+    }
+    dp.push(max);
   }
 
-  return dp[n];
+  return result(dp[n]);
+}
+
+function result(dpLast) {
+  const lens = [];
+  while(dpLast) {
+    lens.push(dpLast.len);
+    dpLast = dpLast.next;
+  }
+  return lens;
 }
