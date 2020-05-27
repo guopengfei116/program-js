@@ -6,5 +6,5 @@ console.log(result);
 const result2 = program(["a", "a", "b", "b", "c", "c", "a", "a", , , , ,], 8, "a");
 console.log(result2);
 
-const result3 = program(["a", "a", , ,], 2, "a");
+const result3 = program(["a", "b", "a", , ,], 3, "a");
 console.log(result3);

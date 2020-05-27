@@ -12,11 +12,11 @@
   输出: ["a", "a", "a", "a", "b", "b", "c", "c", "a", "a", "a", a"]
 
   示例 3：
-  输入: ["a", "a"], "a"
-  输出: ["a", "a", "a", "a"]
+  输入: ["a", "b", "a"], "a"
+  输出: ["a", "a", "b", "a", "a"]
  */
 export default function(arr, n, x) {
-  for (let i = n - 1, j = arr.length - 1; i > 0; i--, j--) {
+  for (let i = n - 1, j = arr.length - 1; i >= 0; i--, j--) {
     arr[j] = arr[i];
     if (arr[i] === x) {
       arr[--j] = arr[i];
